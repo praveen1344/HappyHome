@@ -1,17 +1,51 @@
 .login-page-container{
     position: relative;
-    height: 100vh;
-    /* background: #fff;
-     */
+    height: 100%;
     background-image: linear-gradient( 135deg, #bfe8e3 10%, #d0cfea 100%);
     overflow-y: scroll;
 }
 
-.login-container{
+.login-container,.forgot-password-container{
     position: absolute;
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
-
+.forgot-password-container{
+    max-width: 20rem;
+    min-height: 30vh;
+}
+.signup-links-container{
+    display: flex;
+    margin-top: 1rem;
+    font-size: 0.5rem;
+    justify-content: space-between;
+}
+.signup-links-container a{
+    text-decoration: underline;
+}
+.forgot-password-mssg{
+    color: #099045;
+}
+.app-main-page-container{
+    border-radius: 4px;
+    padding: 2rem;
+}
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.signup-form-scrollwindow{
+    height: 500px;
+    overflow-y: scroll;
+    margin-top: 2rem;
+}
+@media screen and (min-width: 768px){
+    .sign-up-form{
+        text-align: left;
+        width: 60%;
+        margin: 0 auto;
+    }
+}

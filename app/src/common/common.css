@@ -115,3 +115,23 @@
         transform: translate3d(4px, 0, 0);
     }
 }
+
+.page-title{
+    margin: 0;
+    text-align: center;
+}
+.flex-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.grid{
+    width: 100%;
+    /* padding: 0 1rem; */
+    margin: 0 auto;
+}
+@media screen and (min-width: 768px){
+    .grid{
+        width: 960px;
+    }
+}

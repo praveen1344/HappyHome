@@ -13,6 +13,10 @@ const LoginComponent = (props) => {
                     <LabelInput identifier="username" label="Username" type="text"/>
                     <LabelInput identifier="password" label="Password" type="password"/>
                     <PrimaryButton label="Submit" onClick={() => setErrorState(!isError)}/>
+                    <div className="signup-links-container">
+                        <a href="/forgot-password">Forgot Password?</a>
+                        <a href="/sign-up">New User/Sign Up</a>
+                    </div>
                 </div>
             </div>
         </div>
