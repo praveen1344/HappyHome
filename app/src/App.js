@@ -12,6 +12,7 @@ import ForgotPassword from './login/ForgotPassword';
 import SignUp from './login/SignUp';
 import LandingPage from './landing';
 import HeaderComponent from './components/Header';
+import AboutUsPage from './components/AboutUsPage';
 
 import logo from './logo.svg';
 import './App.css';
@@ -31,6 +32,9 @@ function App() {
           <Route path="/forgot-password">
             <ForgotPassword/>
           </Route>
+          <Route path="/about-us">
+            <AboutUsPage />
+          </Route>
           <Route path="/">
             <LandingPage />
           </Route>
@@ -41,21 +45,3 @@ function App() {
 }
 
 export default App;
-
-
-// <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>

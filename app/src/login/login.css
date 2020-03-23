@@ -13,7 +13,7 @@
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 .forgot-password-container{
-    max-width: 20rem;
+    min-width: 75vw;
     min-height: 30vh;
 }
 .signup-links-container{
@@ -28,9 +28,19 @@
 .forgot-password-mssg{
     color: #099045;
 }
+
 .app-main-page-container{
     border-radius: 4px;
-    padding: 2rem;
+    width: 100%;
+    margin: 0;
+    margin-top: 1rem;
+    background: #fff;
+    height: calc(100% - 72px);
+    overflow-y: scroll;
+}
+.app-main-page-container.grid{
+    margin-top: 1rem;
+    padding-top: 2rem;
 }
 .sign-up-form{
     display: flex;
@@ -38,14 +48,20 @@
     flex-wrap: nowrap;
 }
 .signup-form-scrollwindow{
-    height: 500px;
+    padding: 2rem;
     overflow-y: scroll;
-    margin-top: 2rem;
 }
 @media screen and (min-width: 768px){
     .sign-up-form{
         text-align: left;
         width: 60%;
         margin: 0 auto;
+    }
+    .app-main-page-container{
+        height: calc(100% - 72px);
+    }
+    .forgot-password-container{
+        min-width: auto;
+        max-width: 20rem;
     }
 }

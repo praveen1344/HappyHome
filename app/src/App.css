@@ -48,9 +48,3 @@ html,body{
   background-image: linear-gradient( 135deg, #bfe8e3 10%, #d0cfea 100%);
   overflow-y: hidden;
 }
-
-.app-main-page-container{
-  margin-top: 1rem;
-  background: #fff;
-  min-height: 100%;
-}

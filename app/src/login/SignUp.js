@@ -18,6 +18,7 @@ const SignUp = () => {
                     <LabelInput identifier="city" label="City" type="text"/>
                     <LabelInput identifier="state" label="State" type="text"/>
                     <LabelInput identifier="zipcode" label="ZipCode" type="number"/>
+                    <PrimaryButton label="Create Account"/>
                 </form>
             </div>
         </div>
