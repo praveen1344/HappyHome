@@ -5,7 +5,12 @@ html,body{
   text-align: center;
 }
 
-.App-logo {
+.btn-primary {
+  background-color: #00355F;
+  border-color: #00355F;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -47,4 +52,4 @@ html,body{
   padding-top: 60px;
   background-image: linear-gradient( 135deg, #bfe8e3 10%, #d0cfea 100%);
   overflow-y: hidden;
-}
+} */
