@@ -49,7 +49,6 @@
 }
 .signup-form-scrollwindow{
     padding: 2rem;
-    overflow-y: scroll;
 }
 @media screen and (min-width: 768px){
     .sign-up-form{
