@@ -10,6 +10,7 @@ const SignUp = () => {
                 <form className="sign-up-form">
                     <LabelInput identifier="firstname" label="First Name" type="text"/>
                     <LabelInput identifier="lastname" label="Last Name" type="text"/>
+                    <LabelInput identifier="email" label="EMail" type="text"/>
                     <LabelInput identifier="password" label="Password" type="password"/>
                     <LabelInput identifier="confirmpassword" label="Re-enter Password" type="password"/>
                     <LabelInput identifier="contact" label="Phone" type="number"/>
