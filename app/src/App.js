@@ -3,6 +3,10 @@ import HappyLoft from './components/HappyLoftApp'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function App() {
   return (
