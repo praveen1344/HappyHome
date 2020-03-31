@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container,Row, Col, Image } from 'react-bootstrap';
+import { Container,Row, Image } from 'react-bootstrap';
 import CardLayout from '../common/CardLayout';
 import './aboutUs.css';
 

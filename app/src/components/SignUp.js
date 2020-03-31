@@ -6,8 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import './SignUp.css';
 
-
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://192.168.0.9:8080';
 
 const schema = yup.object({
   firstName: yup.string().required(),
@@ -48,11 +47,19 @@ const SignUpComponent = (props) => {
               setSubmitting(false);
             })
             .catch(error => {
-              console.log(error.response);
-              console.log(error.response.data.message);
-              toast.error(error.response.data.message, {
-                position: toast.POSITION.TOP_RIGHT
-              });
+              if(error.response) {
+                console.log(error.response);
+                if(error.response.data) {
+                  console.log(error.response.data.message);
+                  toast.error(error.response.data.message , {
+                    position: toast.POSITION.TOP_RIGHT
+                  });
+                }
+              } else {
+                toast.error(error.message , {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+              }
               resetForm({});
               setSubmitting(false);
             });

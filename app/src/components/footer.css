@@ -2,6 +2,10 @@
     padding: 1%;
 }
 
+.footer-row {
+    padding: 5px 24px !important;
+}
+
 .contact-link {
     text-align: right;
     color: black;
