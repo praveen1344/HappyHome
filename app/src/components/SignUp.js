@@ -111,7 +111,7 @@ const SignUpComponent = (props) => {
             </Form.Group>
         </Form.Row>
         <Form.Row>
-            <Form.Group as={Col} controlId="validationFormikEmail">
+            <Form.Group as={Col} md="12" controlId="validationFormikEmail">
               <Form.Label>Email ID</Form.Label>
                 <Form.Control
                   type="text"
