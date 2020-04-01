@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import './SignUp.css';
 
-const API_URL = 'http://192.168.0.9:8080';
+const API_URL = 'https://happy-loft.herokuapp.com';
 
 const schema = yup.object({
   firstName: yup.string().required(),
