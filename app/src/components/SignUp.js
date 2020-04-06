@@ -1,19 +1,23 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import { Form, Col, InputGroup, Button } from 'react-bootstrap';
+import { Form, Col, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import './SignUp.css';
+
+const API_URL = 'https://happy-loft.herokuapp.com';
 
 const schema = yup.object({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   email: yup.string().required(),
   password: yup.string().required(),
-  confirmPassword: yup.string()
+  confirmPassword: yup.string().required()
      .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
-function SignUpComponent() {
+const SignUpComponent = (props) => {
   return (
     <>
     <div className="sign-up-title">
@@ -26,15 +30,43 @@ function SignUpComponent() {
           
           // When button submits form and form is in the process of submitting, submit button is disabled
          setSubmitting(true);
-        
-          // Simulate submitting to database, shows us values submitted, resets form
-          setTimeout(() => {
-            console.log(values);
-            resetForm();
-            setSubmitting(false);
-          }, 500);
+         console.log(JSON.stringify(values));
+         
+         delete values.confirmPassword;
+
+         axios.post(`${API_URL}/user/add`, 
+                    JSON.stringify(values),
+                    {headers: {'Content-Type': 'application/json'}})
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+              toast.success("Successfully signed up !", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+              resetForm({});
+              setSubmitting(false);
+            })
+            .catch(error => {
+              if(error.response) {
+                console.log(error.response);
+                if(error.response.data) {
+                  console.log(error.response.data.message);
+                  toast.error(error.response.data.message , {
+                    position: toast.POSITION.TOP_RIGHT
+                  });
+                }
+              } else {
+                toast.error(error.message , {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+              }
+              resetForm({});
+              setSubmitting(false);
+            });
+
         }}
       initialValues={{
+        
       }}
     >
       {({
@@ -55,7 +87,7 @@ function SignUpComponent() {
                 type="text"
                 placeholder="firstname"
                 name="firstName"
-                value={values.firstName}
+                value={values.firstName || ''}
                 onChange={handleChange}
                 isInvalid={!!errors.firstName}
               />
@@ -69,7 +101,7 @@ function SignUpComponent() {
                 type="text"
                 placeholder="lastname"
                 name="lastName"
-                value={values.lastName}
+                value={values.lastName || ''}
                 onChange={handleChange}
                 isInvalid={!!errors.lastName}
               />
@@ -79,13 +111,13 @@ function SignUpComponent() {
             </Form.Group>
         </Form.Row>
         <Form.Row>
-            <Form.Group as={Col} controlId="validationFormikEmail">
+            <Form.Group as={Col} md="12" controlId="validationFormikEmail">
               <Form.Label>Email ID</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="email"
                   name="email"
-                  value={values.email}
+                  value={values.email || ''}
                   onChange={handleChange}
                   isInvalid={!!errors.email}
                 />
@@ -101,7 +133,7 @@ function SignUpComponent() {
                 type="password"
                 placeholder="password"
                 name="password"
-                value={values.password}
+                value={values.password || ''}
                 onChange={handleChange}
                 isInvalid={!!errors.password}
               />
@@ -115,7 +147,7 @@ function SignUpComponent() {
                 type="password"
                 placeholder="confirmPassword"
                 name="confirmPassword"
-                value={values.confirmPassword}
+                value={values.confirmPassword || ''}
                 onChange={handleChange}
                 isInvalid={!!errors.confirmPassword}
               />

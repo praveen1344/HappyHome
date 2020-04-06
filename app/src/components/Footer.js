@@ -1,11 +1,11 @@
 import React from 'react';
 import './footer.css';
-import {Container, Row, Col, Nav} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 
 const FooterComponent = (props) => {
     return(
         <Container className="footer-sub-container">
-            <Row>
+            <Row className="footer-row">
                 <Col>
                     HappyLoft
                 </Col>

@@ -3,6 +3,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +20,7 @@ import LandingPage from './landing';
 import HeaderComponent from './components/Header';
 import AboutUsPage from './components/AboutUsPage';
 import ModalWindow from './common/ModalWindow';
+
 
 //Admin page to showcase all tables within the application
 
@@ -42,7 +44,7 @@ class App extends React.Component{
       }
     }
   }
-  
+
   componentDidMount(){
     const userType = localStorage.getItem('user-type')
     const state = this.state;
@@ -64,7 +66,7 @@ class App extends React.Component{
   }
   handleModalClosing = () => {
     const state = this.state;
-    
+
     state.modalWindowProps = {
       isOpen: false,
       message: "",
