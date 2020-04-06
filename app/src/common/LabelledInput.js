@@ -1,30 +1,37 @@
 import React, {Component} from 'react';
 import './common.css';
 
-class LabelInput extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            inputValue: '',
-            label: this.props.label
+const LabelInput = (props) => {
+    let isMandatory = props.mandatory ? 'mandatory' : '';
+    let errorState = props.isError ? 'input-label-container error' : 'input-label-container';
+    let isError = props.isError;
+    
+    const renderErrorMessage = () => {
+        if(!isError){
+            return null
+        }else{
+            return(
+                <div className='error-message'>{props.errorMessage}</div>
+            )
         }
     }
 
-    setValue = (e) => {
-        this.setState({
-            inputValue: e.target.value
-        })
+    const handleErrorState = (e) => {
+        if (isError == true){
+            props.handleFocusState(e.target.name)
+        }
     }
 
-    render(){
-        return(
-            <div className="input-label-container">
-                <label htmlFor={this.props.identifier}>{this.props.label}</label>
-                <input name={this.props.identifier} autoComplete='off' type={this.props.type} value={this.state.inputValue} onChange={this.setValue}/>
-                <div className="bar"></div>
-            </div>
-        )
-    }
+    return(
+        <div className={errorState}>
+            <label className={isMandatory} htmlFor={props.identifier}><span>{props.label}</span></label>
+            <input name={props.identifier} autoComplete='off' type={props.type} value={props.val} onChange={props.handleEntry} onFocus={handleErrorState}/>
+            <div className="bar"></div>
+            {    
+                renderErrorMessage()
+            }    
+        </div>
+    )
 }
 
 export default LabelInput;
