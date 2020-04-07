@@ -49,7 +49,6 @@ class App extends React.Component{
     const userType = localStorage.getItem('user-type')
     const state = this.state;
     if (userType == undefined){
-      // return "<Redirect to = '/login'/>"
       console.log(this.props)
       this.props.history.push('/login')
     }else if (userType == 'User'){
