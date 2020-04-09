@@ -74,9 +74,9 @@ let SignUpForm =
             mandatory: false,
             value: ''
         },
-        address2: {
-            identifier: 'address2',
-            label: 'Address Line 2',
+        bio: {
+            identifier: 'bio',
+            label: 'Biography',
             type: 'text',
             mandatory: false,
             value: ''

@@ -48,8 +48,8 @@ html,body{
 .app-container{
   position: relative;
   width: 100%;
-  height: calc(100vh - 60px);
-  padding-top: 60px;
+  height: calc(100vh - 72px);
+  overflow: hidden;
   background-image: linear-gradient( 135deg, #bfe8e3 10%, #d0cfea 100%);
   overflow-y: hidden;
 } 

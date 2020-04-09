@@ -1,8 +1,10 @@
 import React from 'react';
-
-const LandingPage = () => {
+import HomePageComponent from './components/HomePage';
+const LandingPage = (props) => {
     return(
-        <div>Landing Page</div>
+        <div className="landing-page-container">
+            <HomePageComponent isLoggedIn={props.isLoggedIn}/>
+        </div>
     )
 }
 

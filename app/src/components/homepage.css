@@ -50,6 +50,20 @@
     padding: 48px;
 }
 
+.landing-page-container{
+    position: relative;
+    height: calc(100%);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.landing-page-content-container{
+    position: relative;
+    height: auto;
+    width: 1024px;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 768px) { 
     .carousel-img {
         height: 300px;

@@ -1,6 +1,7 @@
 .navbar-container {
     /* max-width: 1136px; */
     padding: 0 200px;
+    background: #fc0;
 }
 
 .user-avatar{
@@ -143,4 +144,26 @@
     .header-mobile-nav{
         width: auto;
     }
+}
+
+.navbar-container {
+    /* max-width: 1136px; */
+    padding: 0 200px;
+}
+
+.user-avatar{
+    width: 40px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) { 
+    .navbar-container {
+        padding: 0;
+    }
+}
+#responsive-navbar-nav{
+    flex-grow: 0 !important;
+}
+#Navigation-bar-container{
+    justify-content: space-between !important;
 }

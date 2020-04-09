@@ -26,6 +26,11 @@
 .table-content-container div.detail{
     display: block;
 }
+.admin-scroll-container{
+    position: relative;
+    height: calc(100% - 60px);
+    overflow: scroll;
+}
 @media screen and (min-width: 768px){
     .table-content-container div{
         display: block;

@@ -216,7 +216,7 @@
     justify-content: space-evenly;
     text-align: center;
 }
-.modal-header{
+.modal-window-header{
     position: relative;
 }
 .modal-window-img{
@@ -267,4 +267,32 @@
       to {
         transform: scale(1);
       }
+}
+
+/* Spinner CSS Styles */
+.spinner-component{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+.spinner-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    opacity: 0.5;
+    z-index: 10;
+}
+.spinner-component .spinner-border{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    width: 4rem;
+    height: 4rem;
 }

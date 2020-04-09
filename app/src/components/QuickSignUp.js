@@ -17,13 +17,13 @@ const schema = yup.object({
      .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
-const SignUpComponent = (props) => {
+const QuickSignUp = (props) => {
   return (
     <>
     <div className="sign-up-title">
         <h2>Let's get you signed up.</h2>
     </div>
-    <div className="sign-up-form">
+    
     <Formik
       validationSchema={schema}
       onSubmit={(values, {setSubmitting, resetForm}) => {
@@ -161,12 +161,12 @@ const SignUpComponent = (props) => {
         </Form>
       )}
     </Formik>
-    </div>
+    
     </>
   );
 }
 
-export default SignUpComponent;
+export default QuickSignUp;
 
 
 

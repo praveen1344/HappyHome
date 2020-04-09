@@ -5,7 +5,7 @@ const ModalWindow = (props) => {
     let modalDisplay = props.isOpen ? "modalWindow" : "modalWindow hidden";
     let imageSrc = props.isSuccess ? "./../assets/success.png" : "./../assets/error.png";
     let outcomeMssg = props.isSuccess ? "Success" : "Failure";
-    let outcomeClass = props.isSuccess ? "modal-header success" : "modal-header failure";
+    let outcomeClass = props.isSuccess ? "modal-header-window success" : "modal-header-window failure";
     let isRedirect = props.redirectLink != undefined ? true : false;
 
     return(

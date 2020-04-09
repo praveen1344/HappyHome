@@ -19,7 +19,7 @@
 .signup-links-container{
     display: flex;
     margin-top: 1rem;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     justify-content: space-between;
 }
 .signup-links-container a{

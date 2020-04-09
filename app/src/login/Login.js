@@ -4,6 +4,8 @@ import LabelInput from '../common/LabelledInput';
 import PrimaryButton from '../common/PrimaryButton';
 import axiosHandler from './../common/axios';
 
+import { withRouter } from'react-router-dom';
+
 class LoginComponent extends React.Component {
     constructor(props){
         super(props);
@@ -11,9 +13,9 @@ class LoginComponent extends React.Component {
             formSubmitted: false,
             isError: props.isError,
             loginForm: {
-                username: {
-                    identifier: 'username',
-                    label: 'User Name',
+                email: {
+                    identifier: 'email',
+                    label: 'Email',
                     type: 'text',
                     value: ''
                 },
@@ -33,25 +35,29 @@ class LoginComponent extends React.Component {
         this.setState({...stateCopy})
         const form = this.state.loginForm;
         const body = {
-            email: form.username.value,
+            email: form.email.value,
             password: form.password.value
         }
         var self = this;
         axiosHandler.post('/login/user',{...body})
-            .then(res => {
-                console.log(res);
+            .then((res) => {
                 localStorage.setItem('user-type', res.data);
+                localStorage.setItem('email', form.email.value);
+                self.props.userLoggedIn(true);
+                self.props.history.push("/");
             })
             .catch(function(error){
+                console.log(error)
                 const formElements = self.state;
                 formElements.isError = true;
                 formElements.formSubmitted = false;
                 self.setState({formElements})
                 let timeoutSelf = self;
                 localStorage.setItem('user-type', undefined);
+                localStorage.setItem('email', undefined);
                 setTimeout(function(){
                     formElements.isError = false;
-                    formElements.loginForm['username'].value = '';
+                    formElements.loginForm['email'].value = '';
                     formElements.loginForm['password'].value = '';
                     timeoutSelf.setState(formElements);
                 },300);
@@ -72,7 +78,7 @@ class LoginComponent extends React.Component {
             <div className="login-page-container">
                 <div className="login-container position-center">
                     <div className={isErrorClassName}>
-                        <LabelInput identifier={this.state.loginForm.username.identifier} label={this.state.loginForm.username.label} type={this.state.loginForm.username.type} val={this.state.loginForm.username.value} handleEntry={this.handleEntry}/>
+                        <LabelInput identifier={this.state.loginForm.email.identifier} label={this.state.loginForm.email.label} type={this.state.loginForm.email.type} val={this.state.loginForm.email.value} handleEntry={this.handleEntry}/>
                         <LabelInput identifier={this.state.loginForm.password.identifier} label={this.state.loginForm.password.label} type={this.state.loginForm.password.type} val={this.state.loginForm.password.value} handleEntry={this.handleEntry}/>
                         
                         <PrimaryButton label="Submit" onClick={this.loginActionBinder} isDisabled={this.state.formSubmitted}/>
@@ -87,4 +93,4 @@ class LoginComponent extends React.Component {
     }
 }
 
-export default LoginComponent;
+export default withRouter(LoginComponent);

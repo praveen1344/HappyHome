@@ -33,7 +33,7 @@ const AdminPage = () => {
     }
     else{
         return (
-            <div>
+            <div className="admin-scroll-container">
                 <h1>Admin Page</h1>
                 <ul className="table-content-container">
                     <li id='0' className='table-row-header'>

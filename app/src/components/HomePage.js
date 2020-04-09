@@ -2,12 +2,34 @@ import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Container, Row, Col } from 'react-bootstrap';
 import './homepage.css';
-import SignUp from './SignUp';
+import QuickSignUp from './QuickSignUp';
+import axiosHandler from './../common/axios';
 
 class HomePageComponent extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            userDetails: {
+                isLoggedIn: false,
+                name: ""
+            }
+        }
+    }
+    componentDidMount(){
+        const isLoggedIn = (localStorage.getItem('userName') != undefined)
+        if (isLoggedIn){
+            this.state.userDetails.name = localStorage.getItem('userName')
+            this.state.userDetails.isLoggedIn = true
+        }
+    }
     render() {
         return ( 
             <>
+            {/* {
+                this.state.userDetails.isLoggedIn ? (
+                    <h1 className = ''>Welcome,{this.state.userDetails.name}</h1>
+                ) : (null)
+            } */}
             <div className="carousel-container">
             <Carousel>
                 <Carousel.Item>
@@ -46,13 +68,13 @@ class HomePageComponent extends Component {
                 </Carousel.Item>
             </Carousel>
             </div>
-
-            <div className="hl-desc-container">
+            {/* <div className="landing-page-content-container"></div> */}
+            <div className=" landing-page-content-containerhl-desc-container">
                 <div className="desc-sub-container">
+                    <h2 className="hl-heading">Why Happy Loft?</h2>
                     <Container>
                         <Row>
                             <Col md={6} className="container-2-col1">
-                                <h2 className="hl-heading">Why Happy Loft?</h2>
                                 <div className="hl-pts">
                                     <Row>
                                         <img
@@ -97,26 +119,29 @@ class HomePageComponent extends Component {
                     </Container>
                 </div>
             </div>
-
+            
             <div className="divider"></div>
 
-            <Container>
-                <Row>
-                    <Col md={6}>
-                        <div className="sign-up-form">
-                            <SignUp />
-                        </div>
-                    </Col>
-                    <Col md={6}>
-                        <img
-                            className="sign-up-img"
-                            src="../assets/sign-up.jpg"
-                            alt="service-icon"
-                            width="400"
-                        />
-                    </Col>
-                </Row>
-            </Container>
+            {
+                !this.props.isLoggedIn ?  
+                    (
+                        <Container>
+                            <Row>
+                                <Col md={6}>
+                                    <QuickSignUp />
+                                </Col>
+                                <Col md={6}>
+                                    <img
+                                        className="sign-up-img"
+                                        src="../assets/sign-up.jpg"
+                                        alt="service-icon"
+                                        width="400"
+                                    />
+                                </Col>
+                            </Row>
+                        </Container>
+                    ) : null 
+            }
             
             </>
         )

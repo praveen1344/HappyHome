@@ -74,6 +74,7 @@ class SignUp extends React.Component {
     constructor(props){
         super(props);
         this.state = SignUpForm;
+        this.state.isProfile = props.isProfile;
     }
     
     handleEntry = (e) => {
@@ -86,6 +87,38 @@ class SignUp extends React.Component {
         const element = this.state[name]
         element.isError = false;
         this.setState({...this.state, [name]: element})
+    }
+
+
+    componentDidMount(){
+        if (this.state.isProfile){
+            this.props.showcaseSpinner(true)
+            const email = localStorage.getItem('email')
+            const self = this;
+            const url = '/user/fetch?email=' + email;
+            const state = this.state;
+            
+            axiosHandler.get(url).then((res) => {
+                const userData = res.data;
+                
+                for (let ele in userData){
+                    if (ele in state && ele != 'password'){
+                        state[ele].value = res.data[ele]
+                    }
+                }
+                console.log(state, userData)
+                
+            }).catch(function(error){
+                console.log(error)
+                setTimeout(function(){
+                    self.props.showcaseSpinner(false)
+                },1000)
+            });
+            setTimeout(function(){
+                self.setState({...state})
+                self.props.showcaseSpinner(false)
+            },1000)
+        }
     }
 
     validateform(){
@@ -160,14 +193,16 @@ class SignUp extends React.Component {
         let response = {isSuccess: false, message: ""};
         axiosHandler.post('/user/add',{...formBody})
             .then(res => {
+                console.log(res)
                 response.isSuccess = true;
                 response.message = 'User Created!';
                 response.redirectLink = '/';
                 self.props.triggerModal(response)
             })
             .catch(function (error) {
+                console.log(error)
                 response.isSuccess = false;
-                response.message = 'User Creation failed!';
+                response.message = 'User with this Email ID already exists!';
                 response.redirectLink = undefined;
                 self.props.triggerModal(response)
             })
@@ -187,28 +222,60 @@ class SignUp extends React.Component {
         }
         e.preventDefault();
     }
+    renderProfilePage = () => {
+        let ButtonText = this.state.isProfile ? 'Update Profile' : 'Create Profile';
+        return (
+            <form className="sign-up-form">
+                <LabelInput identifier={this.state.firstName.identifier} label={this.state.firstName.label} type={this.state.firstName.type} mandatory={this.state.firstName.mandatory} isError={this.state.firstName.isError} errorMessage={this.state.firstName.errorMessage} val={this.state.firstName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.lastName.identifier} label={this.state.lastName.label} type={this.state.lastName.type} mandatory={this.state.lastName.mandatory} isError={this.state.lastName.isError} errorMessage={this.state.lastName.errorMessage} val={this.state.lastName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                
+                <LabelInput identifier={this.state.email.identifier} label={this.state.email.label} type={this.state.email.type} mandatory={this.state.email.mandatory} isError={this.state.email.isError} errorMessage={this.state.email.errorMessage} val={this.state.email.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.password.identifier} label={this.state.password.label} type={this.state.password.type} mandatory={this.state.password.mandatory} isError={this.state.password.isError} errorMessage={this.state.password.errorMessage} val={this.state.password.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.confirmpassword.identifier} label={this.state.confirmpassword.label} type={this.state.confirmpassword.type} mandatory={this.state.confirmpassword.mandatory} isError={this.state.confirmpassword.isError} errorMessage={this.state.confirmpassword.errorMessage} val={this.state.confirmpassword.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                
+                <LabelInput identifier={this.state.contact.identifier} label={this.state.contact.label} type={this.state.contact.type} val={this.state.contact.value} handleEntry={this.handleEntry}/>
+                <LabelInput identifier={this.state.address1.identifier} label={this.state.address1.label} type={this.state.address1.type} val={this.state.address1.value} handleEntry={this.handleEntry}/>
+                <LabelInput identifier={this.state.city.identifier} label={this.state.city.label} type={this.state.city.type} val={this.state.city.value} handleEntry={this.handleEntry}/>
+                <LabelInput identifier={this.state.state.identifier} label={this.state.state.label} type={this.state.state.type} val={this.state.state.value} handleEntry={this.handleEntry}/>
+                <LabelInput identifier={this.state.pincode.identifier} label={this.state.pincode.label} type={this.state.pincode.type} val={this.state.pincode.value} handleEntry={this.handleEntry}/>
+                <PrimaryButton label={ButtonText} onClick={this.submitForm}/>
+            </form>
+        )
+    }
+    renderSignUpPage = () =>{
+        let ButtonText = this.state.isProfile ? 'Update Profile' : 'Create Profile';
+        return(
+            <form className="sign-up-form">
+                <LabelInput identifier={this.state.firstName.identifier} label={this.state.firstName.label} type={this.state.firstName.type} mandatory={this.state.firstName.mandatory} isError={this.state.firstName.isError} errorMessage={this.state.firstName.errorMessage} val={this.state.firstName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.lastName.identifier} label={this.state.lastName.label} type={this.state.lastName.type} mandatory={this.state.lastName.mandatory} isError={this.state.lastName.isError} errorMessage={this.state.lastName.errorMessage} val={this.state.lastName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.email.identifier} label={this.state.email.label} type={this.state.email.type} mandatory={this.state.email.mandatory} isError={this.state.email.isError} errorMessage={this.state.email.errorMessage} val={this.state.email.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.password.identifier} label={this.state.password.label} type={this.state.password.type} mandatory={this.state.password.mandatory} isError={this.state.password.isError} errorMessage={this.state.password.errorMessage} val={this.state.password.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <LabelInput identifier={this.state.confirmpassword.identifier} label={this.state.confirmpassword.label} type={this.state.confirmpassword.type} mandatory={this.state.confirmpassword.mandatory} isError={this.state.confirmpassword.isError} errorMessage={this.state.confirmpassword.errorMessage} val={this.state.confirmpassword.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
+                <PrimaryButton label={ButtonText} onClick={this.submitForm}/>
+            </form>
+        )
+    }
+
+    renderForm = () => {
+        if (this.state.isProfile){
+            return this.renderProfilePage()
+        }else{
+            return this.renderSignUpPage()
+        }
+    }
+
     render(){
+        if(this.props.isProfile){
+            
+        }
+        let headerText = this.state.isProfile ? 'Update Profile' : 'New Member Signup';
         return (
             <div className='app-main-page-container grid'>
-                <h1 className="page-title">New Member Signup  {this.state.invalidForm}</h1>
+                <h1 className="page-title"> {headerText} </h1>
                 <div className="signup-form-scrollwindow">
-                    <form className="sign-up-form">
-                        <LabelInput identifier={this.state.firstName.identifier} label={this.state.firstName.label} type={this.state.firstName.type} mandatory={this.state.firstName.mandatory} isError={this.state.firstName.isError} errorMessage={this.state.firstName.errorMessage} val={this.state.firstName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                        <LabelInput identifier={this.state.lastName.identifier} label={this.state.lastName.label} type={this.state.lastName.type} mandatory={this.state.lastName.mandatory} isError={this.state.lastName.isError} errorMessage={this.state.lastName.errorMessage} val={this.state.lastName.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                        
-                        <LabelInput identifier={this.state.email.identifier} label={this.state.email.label} type={this.state.email.type} mandatory={this.state.email.mandatory} isError={this.state.email.isError} errorMessage={this.state.email.errorMessage} val={this.state.email.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                        <LabelInput identifier={this.state.password.identifier} label={this.state.password.label} type={this.state.password.type} mandatory={this.state.password.mandatory} isError={this.state.password.isError} errorMessage={this.state.password.errorMessage} val={this.state.password.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                        <LabelInput identifier={this.state.confirmpassword.identifier} label={this.state.confirmpassword.label} type={this.state.confirmpassword.type} mandatory={this.state.confirmpassword.mandatory} isError={this.state.confirmpassword.isError} errorMessage={this.state.confirmpassword.errorMessage} val={this.state.confirmpassword.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                        
-                        <LabelInput identifier={this.state.contact.identifier} label={this.state.contact.label} type={this.state.contact.type} val={this.state.contact.value} handleEntry={this.handleEntry}/>
-                        <LabelInput identifier={this.state.address1.identifier} label={this.state.address1.label} type={this.state.address1.type} val={this.state.address1.value} handleEntry={this.handleEntry}/>
-                        <LabelInput identifier={this.state.address2.identifier} label={this.state.address2.label} type={this.state.address2.type} val={this.state.address2.value} handleEntry={this.handleEntry}/>
-                        <LabelInput identifier={this.state.city.identifier} label={this.state.city.label} type={this.state.city.type} val={this.state.city.value} handleEntry={this.handleEntry}/>
-                        <LabelInput identifier={this.state.state.identifier} label={this.state.state.label} type={this.state.state.type} val={this.state.state.value} handleEntry={this.handleEntry}/>
-                        <LabelInput identifier={this.state.pincode.identifier} label={this.state.pincode.label} type={this.state.pincode.type} val={this.state.pincode.value} handleEntry={this.handleEntry}/>
-                        
-                        <PrimaryButton label="Create Account" onClick={this.submitForm}/>
-                    </form>
+                    {
+                        this.renderForm()
+                    }
                 </div>
             </div>
         );
