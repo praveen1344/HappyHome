@@ -71,17 +71,26 @@ class App extends React.Component{
     }
 
     if(state.isLoggedIn){
-      const email = localStorage.getItem('email')
-      const self = this;
-      const url = '/user/fetch?email=' + email;
+      // const email = localStorage.getItem('email')
+      // const self = this;
+      // const url = '/user/fetch?email=' + email;
       
-      axiosHandler.get(url).then((res) => {
-          localStorage.setItem('userName',res.data.firstName + ' ' +  res.data.lastName);
-      })
+      // axiosHandler.get(url).then((res) => {
+      //     localStorage.setItem('userName',res.data.firstName + ' ' +  res.data.lastName);
+      // })
     }
-    
     this.setState({...state})
   }
+
+  componentDidUpdate(prevState,nextState) {
+    const userType = localStorage.getItem('user-type');
+    if (userType == "Admin" && nextState.user.type == undefined){
+        const state = this.state;
+        state['user'].type = userType;
+        this.setState({...state})
+    }
+  }
+
   openModalWindow = (response) => {
     response.isOpen = true;
     this.setState({modalWindowProps: response})
@@ -102,11 +111,22 @@ class App extends React.Component{
     localStorage.setItem('user-type', undefined);
     localStorage.setItem('email', undefined);
     localStorage.setItem('userName', undefined);
-    this.setState({isLoggedIn: false, });
+
+    let modalWindow = {
+      isOpen: true,
+      message: "You have been successfully logged out!",
+      isSuccess: true,
+      redirectLink: '/'
+    }
+    const state = this.state;
+    state.isLoggedIn = false;
+    state['modalWindowProps'] = modalWindow;
+
+    this.setState({...state});
   }
 
   triggerSpinnerDisplay = (value) => {
-    this.setState({showSpinner: true});
+    this.setState({showSpinner: value});
   }
 
   render(){
