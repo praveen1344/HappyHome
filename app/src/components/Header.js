@@ -8,7 +8,7 @@ const HeaderComponent = (props) => {
     return(
         <div className="navbar-container">
             <Navbar collapseOnSelect expand="lg" id="Navigation-bar-container">
-                <Navbar.Brand href="/">HappyHome</Navbar.Brand>
+                <Navbar.Brand href="/">HappyLoft</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
