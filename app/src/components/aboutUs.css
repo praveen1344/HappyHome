@@ -49,3 +49,11 @@
         margin-left: 20%;
     }
 }
+
+.about-us-container{
+    display: flex;
+    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

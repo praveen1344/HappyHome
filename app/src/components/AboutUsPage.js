@@ -34,10 +34,12 @@ const AboutUsPage = () => {
                         <h2 className="about-heading">Meet The Team</h2>
                     </Row>
                     <Row>
-                        <CardLayout img={'../assets/mascot1.jpg'} title="Arshith Devanand" text="About Arshith"/>
-                        <CardLayout img={'../assets/mascot2.jpg'} title="Jayshil Patel" text="About Jayshil"/>
-                        <CardLayout img={'../assets/mascot3.jpg'} title="Praveen Kumar" text="About Praveen"/>
-                        <CardLayout img={'../assets/mascot4.jpg'} title="Tanshi Arora" text="About Tanshi"/>
+                        <div className="about-us-container">
+                            <CardLayout img={'../assets/mascot1.jpg'} title="Arshith " text="About Arshith"/>
+                            <CardLayout img={'../assets/mascot2.jpg'} title="Jayshil " text="About Jayshil"/>
+                            <CardLayout img={'../assets/mascot3.jpg'} title="Praveen " text="About Praveen"/>
+                            <CardLayout img={'../assets/mascot4.jpg'} title="Tanshi " text="About Tanshi"/>
+                        </div>
                     </Row>
                 </Container>
             </div>

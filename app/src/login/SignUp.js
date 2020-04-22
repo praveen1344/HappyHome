@@ -202,7 +202,7 @@ class SignUp extends React.Component {
             .catch(function (error) {
                 console.log(error)
                 response.isSuccess = false;
-                response.message = 'User with this Email ID already exists!';
+                response.message = error.response.message;
                 response.redirectLink = undefined;
                 self.props.triggerModal(response)
             })
@@ -236,7 +236,7 @@ class SignUp extends React.Component {
                 email: this.state.email.value,
                 password: this.state.password.value
             }
-            // e.preventDefault();
+            
             if (this.state.isFormValid){
                 this.createUser(formBody)
             }
@@ -249,8 +249,7 @@ class SignUp extends React.Component {
                 lastName: this.state.lastName.value,
                 email: this.state.email.value,
                 bio: this.state.bio.value,
-                address: this.state.address.value,
-                // dob: this.state.dob.value
+                address: this.state.address.value
             }
             
             if (this.state.isFormValid){
@@ -277,6 +276,7 @@ class SignUp extends React.Component {
                 <LabelInput identifier={this.state.state.identifier} label={this.state.state.label} type={this.state.state.type} val={this.state.state.value} handleEntry={this.handleEntry}/>
                 <LabelInput identifier={this.state.pincode.identifier} label={this.state.pincode.label} type={this.state.pincode.type} val={this.state.pincode.value} handleEntry={this.handleEntry}/> */}
                 <PrimaryButton label={ButtonText} onClick={this.submitForm}/>
+                <a className="reset-password-anchor" href='/reset-password'>Reset Password</a>
             </form>
         )
     }

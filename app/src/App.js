@@ -14,6 +14,7 @@ import LoginComponent from './login/Login';
 import ForgotPassword from './login/ForgotPassword';
 import SignUp from './login/SignUp';
 import LandingPage from './landing';
+import ResetPassword from './login/ResetPassword';
 import HeaderComponent from './components/Header';
 import AboutUsPage from './components/AboutUsPage';
 import ModalWindow from './common/ModalWindow';
@@ -145,10 +146,13 @@ class App extends React.Component{
               <SignUp triggerModal={this.openModalWindow} isProfile={false}/>
             </Route>
             <Route path="/forgot-password">
-              <ForgotPassword/>
+              <ForgotPassword triggerModal={this.openModalWindow} />
             </Route>
             <Route path="/profile">
               <SignUp triggerModal={this.openModalWindow} isProfile={true} showcaseSpinner={this.triggerSpinnerDisplay}/>
+            </Route>
+            <Route path="/reset-password">
+              <ResetPassword isLoggedIn={this.state.isLoggedIn} triggerModal={this.openModalWindow}/>
             </Route>
             <Route path="/about-us">
               <AboutUsPage />
