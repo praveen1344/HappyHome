@@ -3,6 +3,7 @@ html,body{
 }
 .App {
   text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-primary {
@@ -48,10 +49,11 @@ html,body{
 .app-container{
   position: relative;
   width: 100%;
-  height: calc(100vh - 72px);
+  /* height: calc(100vh - 72px); */
   overflow: hidden;
   background-image: linear-gradient( 135deg, #bfe8e3 10%, #d0cfea 100%);
   overflow-y: hidden;
+  height: calc(100vh - 72px - 47px);
 } 
 
 .homepage-header{

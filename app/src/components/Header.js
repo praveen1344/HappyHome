@@ -12,7 +12,6 @@ const HeaderComponent = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/services">Services</Nav.Link>
                         <Nav.Link href="/testimonials">Testimonials</Nav.Link>
                         <Nav.Link href="/about-us">About Us</Nav.Link>
                         {
@@ -26,6 +25,7 @@ const HeaderComponent = (props) => {
                                         </>
                                     ) : (null)
                                 }
+                                <Nav.Link href="/services">Services</Nav.Link>
                                 <Nav.Link href="/profile">Profile</Nav.Link>
                                 <Nav.Link onClick={props.signOutUser}>Sign Out</Nav.Link>
                                 </>

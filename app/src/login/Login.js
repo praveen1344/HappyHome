@@ -73,7 +73,7 @@ class LoginComponent extends React.Component {
         const self = this;
         axiosHandler.get(url).then((res) => {
             console.log(res.data);
-            localStorage.setItem('userName', res.data.firstName + ' ' + res.data.firstName)
+            localStorage.setItem('userName', res.data.firstName + ' ' + res.data.lastName)
             self.handleSavingDetails(res.data);    
         })
     }

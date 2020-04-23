@@ -57,7 +57,7 @@
         margin: 0 auto;
     }
     .app-main-page-container{
-        height: calc(100% - 72px);
+        height: calc(100% - 32px);
     }
     .forgot-password-container{
         min-width: auto;

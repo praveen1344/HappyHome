@@ -27,7 +27,7 @@ class HomePageComponent extends Component {
             <>
             {
                 this.props.isLoggedIn ? (
-                    <h1 className='homepage-header'>Welcome,{this.props.userName}</h1>
+                    <h1 className='homepage-header'>Welcome, {this.props.userName}</h1>
                 ) : (null)
             }
             <div className="carousel-container">
