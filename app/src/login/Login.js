@@ -39,12 +39,16 @@ class LoginComponent extends React.Component {
             password: form.password.value
         }
         var self = this;
+        let userLoggedIn = false;
         axiosHandler.post('/login/user',{...body})
             .then((res) => {
                 localStorage.setItem('user-type', res.data);
                 localStorage.setItem('email', form.email.value);
                 self.props.userLoggedIn(true);
-                self.props.history.push("/");
+                self.props.displayLoader(true);
+                userLoggedIn = true;
+                self.userLoadData(form.email.value);
+                // self.props.history.push("/");
             })
             .catch(function(error){
                 console.log(error)
@@ -61,7 +65,26 @@ class LoginComponent extends React.Component {
                     formElements.loginForm['password'].value = '';
                     timeoutSelf.setState(formElements);
                 },300);
-            })
+            });
+    }
+
+    userLoadData = (email) => {
+        const url = '/user/fetch?email=' + email;
+        const self = this;
+        axiosHandler.get(url).then((res) => {
+            console.log(res.data);
+            localStorage.setItem('userName', res.data.firstName + ' ' + res.data.firstName)
+            self.handleSavingDetails(res.data);    
+        })
+    }
+
+    handleSavingDetails = (response) => {
+        const self = this;
+        setTimeout(() => {
+            self.props.displayLoader(false);
+            self.props.calllParent(response);
+            self.props.history.push("/");
+        },300)
     }
 
     handleEntry = (e) => {

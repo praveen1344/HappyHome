@@ -25,11 +25,11 @@ class HomePageComponent extends Component {
     render() {
         return ( 
             <>
-            {/* {
-                this.state.userDetails.isLoggedIn ? (
-                    <h1 className = ''>Welcome,{this.state.userDetails.name}</h1>
+            {
+                this.props.isLoggedIn ? (
+                    <h1 className='homepage-header'>Welcome,{this.props.userName}</h1>
                 ) : (null)
-            } */}
+            }
             <div className="carousel-container">
             <Carousel>
                 <Carousel.Item>

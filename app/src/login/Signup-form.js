@@ -105,7 +105,8 @@ let SignUpForm =
                 'pincode': true
             }
         },
-        isFormValid: true
+        isFormValid: true,
+        isFormSubmitted: false
     }
 
 let UpdateProfileForm = 
@@ -194,7 +195,8 @@ let UpdateProfileForm =
                 'pincode': true
             }
         },
-        isFormValid: true
+        isFormValid: true,
+        isFormSubmitted: false
     }
 
 

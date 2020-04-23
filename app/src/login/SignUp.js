@@ -200,11 +200,15 @@ class SignUp extends React.Component {
                 self.props.triggerModal(response)
             })
             .catch(function (error) {
-                console.log(error)
+                console.log(error,error.response)
                 response.isSuccess = false;
-                response.message = error.response.message;
+                response.message = error.response.data.message;
                 response.redirectLink = undefined;
                 self.props.triggerModal(response)
+
+                const stateCopy = self.state;
+                stateCopy.isFormSubmitted = false;
+                self.setState({...stateCopy})
             })
     }
 
@@ -238,6 +242,9 @@ class SignUp extends React.Component {
             }
             
             if (this.state.isFormValid){
+                const stateCopy = this.state;
+                stateCopy.isFormSubmitted = true;
+                this.setState({...stateCopy})
                 this.createUser(formBody)
             }
             e.preventDefault();
@@ -253,6 +260,9 @@ class SignUp extends React.Component {
             }
             
             if (this.state.isFormValid){
+                const stateCopy = this.state;
+                stateCopy.isFormSubmitted = true;
+                this.setState({...stateCopy})
                 this.updateUser(formBody)
             }
             // this.createUser(formBody)
@@ -275,7 +285,7 @@ class SignUp extends React.Component {
                 {/* <LabelInput identifier={this.state.city.identifier} label={this.state.city.label} type={this.state.city.type} val={this.state.city.value} handleEntry={this.handleEntry}/>
                 <LabelInput identifier={this.state.state.identifier} label={this.state.state.label} type={this.state.state.type} val={this.state.state.value} handleEntry={this.handleEntry}/>
                 <LabelInput identifier={this.state.pincode.identifier} label={this.state.pincode.label} type={this.state.pincode.type} val={this.state.pincode.value} handleEntry={this.handleEntry}/> */}
-                <PrimaryButton label={ButtonText} onClick={this.submitForm}/>
+                <PrimaryButton label={ButtonText} onClick={this.submitForm} isDisabled={this.state.isFormSubmitted}/>
                 <a className="reset-password-anchor" href='/reset-password'>Reset Password</a>
             </form>
         )
@@ -289,7 +299,7 @@ class SignUp extends React.Component {
                 <LabelInput identifier={this.state.email.identifier} label={this.state.email.label} type={this.state.email.type} mandatory={this.state.email.mandatory} isError={this.state.email.isError} errorMessage={this.state.email.errorMessage} val={this.state.email.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
                 <LabelInput identifier={this.state.password.identifier} label={this.state.password.label} type={this.state.password.type} mandatory={this.state.password.mandatory} isError={this.state.password.isError} errorMessage={this.state.password.errorMessage} val={this.state.password.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
                 <LabelInput identifier={this.state.confirmpassword.identifier} label={this.state.confirmpassword.label} type={this.state.confirmpassword.type} mandatory={this.state.confirmpassword.mandatory} isError={this.state.confirmpassword.isError} errorMessage={this.state.confirmpassword.errorMessage} val={this.state.confirmpassword.value} handleEntry={this.handleEntry} handleFocusState={this.handleFocusState}/>
-                <PrimaryButton label={ButtonText} onClick={this.submitForm}/>
+                <PrimaryButton label={ButtonText} onClick={this.submitForm} isDisabled={this.state.isFormSubmitted}/>
             </form>
         )
     }

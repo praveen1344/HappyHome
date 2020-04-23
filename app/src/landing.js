@@ -3,7 +3,7 @@ import HomePageComponent from './components/HomePage';
 const LandingPage = (props) => {
     return(
         <div className="landing-page-container">
-            <HomePageComponent isLoggedIn={props.isLoggedIn}/>
+            <HomePageComponent userName={props.userName} isLoggedIn={props.isLoggedIn}/>
         </div>
     )
 }
