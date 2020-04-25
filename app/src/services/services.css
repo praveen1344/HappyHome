@@ -12,20 +12,57 @@
     display: flex;
     flex: 1;
     margin: 16px;
-    transition: all 0.4s ease-in;
-    
+    min-height: 400px;
+    transition: all 0.4s ease-in;   
 }
+
+.service-tile.flipped .flipcard-front{
+    transform: rotateY(180deg);
+}
+.service-tile.flipped .flipcard-back{
+    transform: rotateY(0);
+}
+.service-details{
+    padding: 0 1rem;
+}
+.flipcard-back .service-details{
+    padding: 1rem;
+    position: relative;
+}
+.service-details *{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.service-details h1{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.service-details h1:last-of-type{
+    margin-top: 10px;
+}
+
+.close-tile{
+    position: absolute;
+    top: 0.5rem;
+    transform: scale(1.5);
+    right: 1rem;
+}
+
 .service-tile-content-container{
     display: flex;
     flex: 1;
-    background: #fff;
-    border: 0.5px solid #eee;
-    border-radius: 8px;
+    perspective: 1000px;
+    position: relative;
+    
     cursor: pointer;
 }
 .services-list-container{
     display: flex;
+    padding: 0;
     flex-direction: column;
+    position: relative;
     flex: 1;
 }
 .service-img-container{
@@ -95,8 +132,148 @@
     width: 40px;
     cursor: pointer;
 }
+.create-service-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.further-info{
+    margin: 2rem 0 0 0;
+    text-align: center;
+    display: block;
+    text-decoration: underline;
+}
+
+.service-tile .action-btn{
+    margin-top: 16px;
+}
+
+.flipcard-front,.flipcard-back{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform ease-in-out 600ms;
+}
+
+.service-tile-outter-container{
+    padding: 1rem;
+    background: #fff;
+    border: 0.5px solid #eee;
+    border-radius: 8px;
+    flex-direction: row;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+}
+.service-tile-outter-container.flipcard-back{
+    flex-direction: column;
+}
+
+.flipcard-back{
+    transform: rotateY(-180deg);
+}
+
+.service-filter-panel{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    padding: 0 1rem;
+}
+.filter-header{
+    display: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.service-filter-panel ul{
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+.filter-tab{
+    padding: 1rem 1rem;
+    cursor: pointer;
+    margin: 1rem 0;
+    margin: 5px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex: 1 1;
+    border: 1px solid transparent;
+    background: #fff;
+    border-radius: 8px;
+}
+.filter-tab.active{
+    background: #fc0;
+    font-weight: bold;
+}
+
+.filter-create-service{
+    display: block;
+    margin: 1rem 0 0 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.service-tile-status{
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 9px;
+}
+
+.services-container .no-data{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.in-progress{
+    background: blue;
+}
+.completed{
+    background: red;
+}
+.new{
+    background: green;
+}
 
 @media screen and (min-width: 768px){
+    .filter-header{
+        display: flex;
+    }
+    .filter-tab{
+        margin: 1rem 0;
+    }
+    .service-tile-status{
+        left: auto;
+        right: 1rem;
+    }
+    .filter-create-service{
+        display: block;
+        margin: 2rem 0 1rem 0;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    /* Create Service Form */
+    .create-service-form{
+        text-align: left;
+        width: 60%;
+        margin: 0 auto;
+    }
+    
     /* Service Page container styles */
     .service-page-container{
         max-width: 1080px;
@@ -130,15 +307,17 @@
     }
     .service-tile{
         flex-basis: 50%;
-        margin: 1rem 0;
+        min-height: 400px;
+        max-width: 50%;
+        /* margin: 1rem 0; */
+        margin: 0;
         padding: 1rem;
     }
     .service-tile-content-container{
         margin: 0;
-        padding: 1rem;
         flex-direction: column;
-        min-height: 200px;
-        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+        /* min-height: 200px; */
+        /* min-height: 400px; */
     }
     
     .service-img-container{
@@ -181,5 +360,11 @@
         list-style-type: none;
         margin: 0;
         align-self: center;
-    }    
+    }
+    .service-tile-outter-container{
+        flex-direction: column ;
+    }
+    .service-tile-outter-container.flipcard-back{
+        flex-direction: column;
+    }
 }

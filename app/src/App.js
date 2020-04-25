@@ -21,6 +21,7 @@ import AboutUsPage from './components/AboutUsPage';
 import ModalWindow from './common/ModalWindow';
 import FooterComponent from './components/Footer';
 import ServicesPage from './services/ServicesPage';
+import CreateService from './services/CreateService';
 
 import Spinner from './common/Spinner';
 
@@ -159,7 +160,10 @@ class App extends React.Component{
               <AboutUsPage />
             </Route>
             <Route path="/services">
-              <ServicesPage />
+              <ServicesPage showcaseSpinner={this.triggerSpinnerDisplay} triggerModal={this.openModalWindow}/>
+            </Route>
+            <Route path="/create-service">
+              <CreateService triggerModal={this.openModalWindow}/>
             </Route>
             <Route path="/admin">
               <AdminPage />
