@@ -8,9 +8,9 @@ const AboutUsPage = () => {
         <div className="about-us-section">
             <div className="about-us-container">
                 <Container>
-                    <Row>
-                        <Image className="img-mascot" src="../assets/mascot.jpg" fluid />
-                        <h1 className="about-us">About Us</h1>
+                    <Row className='about-us-header'>
+                        <h1 className="">About Us</h1>
+                        <Image className="" src="../assets/mascot.jpg" fluid />
                     </Row>
                 </Container>
             </div>

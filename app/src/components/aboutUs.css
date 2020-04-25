@@ -57,3 +57,13 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.row.about-us-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-basis: 75%;
+    width: 75%;
+    margin: 0 auto;
+    align-items: center;
+}

@@ -73,9 +73,9 @@ class HomePageComponent extends Component {
                 <div className="desc-sub-container">
                     <h2 className="hl-heading">Why Happy Loft?</h2>
                     <Container>
-                        <Row>
+                        <Row className="align-center">
                             <Col md={6} className="container-2-col1">
-                                <div className="hl-pts">
+                                <div className="">
                                     <Row>
                                         <img
                                             className="hl-icon"
