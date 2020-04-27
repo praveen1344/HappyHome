@@ -256,7 +256,8 @@ class SignUp extends React.Component {
                 lastName: this.state.lastName.value,
                 email: this.state.email.value,
                 bio: this.state.bio.value,
-                address: this.state.address.value
+                address: this.state.address.value,
+                contact: this.state.contact.value
             }
             
             if (this.state.isFormValid){

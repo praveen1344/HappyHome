@@ -35,10 +35,10 @@ const AboutUsPage = () => {
                     </Row>
                     <Row>
                         <div className="about-us-container">
-                            <CardLayout img={'../assets/mascot1.jpg'} title="Arshith " text="About Arshith"/>
-                            <CardLayout img={'../assets/mascot2.jpg'} title="Jayshil " text="About Jayshil"/>
-                            <CardLayout img={'../assets/mascot3.jpg'} title="Praveen " text="About Praveen"/>
-                            <CardLayout img={'../assets/mascot4.jpg'} title="Tanshi " text="About Tanshi"/>
+                            <CardLayout img={'../assets/Arshith.png'} title="Arshith " text="Arshith leads technology and product development at HappyLoft "/>
+                            <CardLayout img={'../assets/Jayshil.jpg'} title="Jayshil " text="Jayshil is responsible for operations and service provider on-boarding at HappyLoft"/>
+                            <CardLayout img={'../assets/Praveen.jpg'} title="Praveen " text="Praveen leads technology and product development at HappyLoft "/>
+                            <CardLayout img={'../assets/Tanshi.jpg'} title="Tanshi " text="Tanshi is responsible for marketing and product growth at HappyLoft"/>
                         </div>
                     </Row>
                 </Container>

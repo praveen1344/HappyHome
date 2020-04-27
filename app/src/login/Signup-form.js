@@ -145,7 +145,7 @@ let UpdateProfileForm =
         contact: {
             identifier: 'contact',
             label: 'Contact Information',
-            type: 'number',
+            type: 'text',
             mandatory: false,
             value: '',
             validation:{
