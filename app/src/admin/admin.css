@@ -12,6 +12,20 @@
     flex-direction: row;
     margin-bottom: 0.5rem;
 }
+.admin-scroll-container .table-content-container{
+    overflow-x: scroll;
+}
+.admin-scroll-container .table-content-container .detail{
+    padding: 0 1rem;
+    min-width: 200px;
+}
+.table-row-header {
+    /* border-bottom: 1px solid #000; */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    word-break: keep-all;
+}
 .table-row-header{
     margin-bottom: 1rem;
 }
