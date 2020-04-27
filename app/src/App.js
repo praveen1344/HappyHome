@@ -142,7 +142,7 @@ class App extends React.Component{
           <Spinner show={this.state.showSpinner}/>
           <Switch>
             <Route path="/login">
-              <LoginComponent isError={false} calllParent={this.callParentLog} userLoggedIn={() => {this.setState({isLoggedIn: true})}} displayLoader={this.triggerSpinnerDisplay}/>
+              <LoginComponent isError={false} calllParent={this.callParentLog} userLoggedIn={() => {this.setState({isLoggedIn: true})}} displayLoader={this.triggerSpinnerDisplay} triggerModal={this.openModalWindow}/>
             </Route>
             <Route path="/sign-up">
               <SignUp triggerModal={this.openModalWindow} isProfile={false}/>

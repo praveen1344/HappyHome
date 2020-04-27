@@ -40,6 +40,8 @@ class LoginComponent extends React.Component {
         }
         var self = this;
         let userLoggedIn = false;
+
+        let response = {isSuccess: false, message: ""};
         axiosHandler.post('/login/user',{...body})
             .then((res) => {
                 localStorage.setItem('user-type', res.data);
@@ -51,11 +53,17 @@ class LoginComponent extends React.Component {
                 // self.props.history.push("/");
             })
             .catch(function(error){
+
+                response.isSuccess = false;
+                response.message = 'Invalid Username or Password';
+                response.redirectLink = undefined;
+                self.props.triggerModal(response);
+
                 console.log(error)
                 const formElements = self.state;
                 formElements.isError = true;
                 formElements.formSubmitted = false;
-                self.setState({formElements})
+                self.setState({formElements});
                 let timeoutSelf = self;
                 localStorage.setItem('user-type', undefined);
                 localStorage.setItem('email', undefined);
@@ -63,6 +71,7 @@ class LoginComponent extends React.Component {
                     formElements.isError = false;
                     formElements.loginForm['email'].value = '';
                     formElements.loginForm['password'].value = '';
+                    
                     timeoutSelf.setState(formElements);
                 },300);
             });

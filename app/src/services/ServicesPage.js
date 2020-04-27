@@ -21,13 +21,12 @@ class ServicesPage extends React.Component{
                 {
                     id: 1,
                     title: 'My Service Requests'
+                },
+                {
+                    id: 2,
+                    // title: 'Interested Service Requests'
+                    title: 'Interested Services'
                 }
-                // ,
-                // {
-                //     id: 2,
-                //     // title: 'Interested Service Requests'
-                //     title: 'Interested Services'
-                // }
             ],
             selectedIndex: 0,
             isServicesLoaded: false
@@ -66,11 +65,11 @@ class ServicesPage extends React.Component{
         const email = localStorage.getItem('email')
         
         let allServices = dateParsedResponse.filter((ele) => {
-            return ele.user.email != email 
+            return ele.user.email != email && ele.service.serviceStatus.id == 1
         })
-        let myRequestedServices = dateParsedResponse.filter((ele) => ele.user.email == email)
+        let myRequestedServices = dateParsedResponse.filter((ele) => ele.user.email == email && ele.creator == true)
         let requestsToBeServiced = dateParsedResponse.filter((ele) => {
-            return ele.interested == true
+            return ele.interested == true && ele.user.email == email
         })
         
         const state = this.state;
@@ -94,12 +93,26 @@ class ServicesPage extends React.Component{
     changeSelection = (index) =>{
         const state = this.state;
         state.selectedIndex = index;
-        // state.response = index == 0 ? state.allServices : (index == 1 ? state.myRequestedServices : state.requestsToBeServiced);
-        state.response = index == 0 ? state.allServices : state.myRequestedServices;
+        state.response = index == 0 ? state.allServices : (index == 1 ? state.myRequestedServices : state.requestsToBeServiced);
+        // state.response = index == 0 ? state.allServices : state.myRequestedServices;
         this.setState({...state});
     }
     render(){
         const self = this;
+
+        // id: 0,
+        //             title: 'All Service Requests'
+        //         }
+        //         ,
+        //         {
+        //             id: 1,
+        //             title: 'My Service Requests'
+        //         },
+        //         {
+        //             id: 2,
+        //             // title: 'Interested Service Requests'
+        //             title: 'Interested Services'
+        // let pageHeader = this.state.selectedIndex == 0 ? 'All Service Requests' : (this.state.selectedIndex == 1 ? 'My Service Requests' : 'Interested Services')
         return (
             <div className="service-page-container">
                 <div className="filters-container">
@@ -111,7 +124,7 @@ class ServicesPage extends React.Component{
                             (this.state.isServicesLoaded == true && this.state.response.length > 0) ?
                                 this.state.response.map((ele,index) => {
                                     return(
-                                        <ServiceTile isDisabled={this.state.selectedIndex == 1} serviceData={ele.service} userData={ele.user} index={index} id={index} triggerModal={self.props.triggerModal}/>
+                                        <ServiceTile isDisabled={this.state.selectedIndex == 1 || this.state.selectedIndex == 2} serviceData={ele.service} userData={ele.user} index={index} id={index} triggerModal={self.props.triggerModal}/>
                                     )
                                 }) :
                                 <div className="no-data">Sorry, you do not have any services in this section</div>
